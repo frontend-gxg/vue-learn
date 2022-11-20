@@ -1,0 +1,48 @@
+import initSqlJs from 'sql.js/dist/sql-wasm.js'
+import blog0 from '@/asserts/blog/blog0.md?raw'
+import desc0 from '@/asserts/blog/desc0.txt?raw'
+import blog1 from '@/asserts/blog/blog1.md?raw'
+import desc1 from '@/asserts/blog/desc1.txt?raw'
+
+const blogs = [
+    { 
+        date: "2022-11-18", 
+        title: "HELLO WORLD",
+        description: desc0,
+        md: blog0, 
+        tags: ["测试"],  
+    },
+    { 
+        date: "2022-11-18", 
+        title: "LATEX", 
+        description: desc1,
+        md: blog1, 
+        tags: ["测试"],
+    },
+];
+
+const config = {
+    locateFile: (filename: string) => `https://sql.js.org/dist/${filename}`
+};
+
+const SQL = await initSqlJs(config);
+
+const db = new SQL.Database();
+
+db.run(`
+    CREATE TABLE timeline (id INT, date TEXT, title TEXT, description TEXT, md TEXT);
+`);
+
+db.run(`
+    CREATE TABLE tag (id INT, tag TEXT);
+`);
+
+for (let i = 0; i < blogs.length; i++) {
+    const blog = blogs[i];
+    db.run(`INSERT INTO timeline VALUES (?, ?, ?, ?, ?);`, [i, blog.date, blog.title, blog.description, blog.md]);
+    for (let tag of blog.tags) {
+        db.run(`INSERT INTO tag VALUES (${i}, '${tag}');`);
+    }
+}
+
+export default db;

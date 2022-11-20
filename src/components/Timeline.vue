@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
-import MetaVue from './Meta.vue';
+import MetaVue from '@/components/Meta.vue';
 
 export default defineComponent({
     components: {
@@ -13,27 +13,15 @@ export default defineComponent({
             type: Array as PropType<Record<string, string>[]>,
             required: true
         }
-    },
-
-    setup() {
-        const pagination = {
-            onChange: (page: number) => {
-                console.log(page);
-            },
-            pageSize: 10,
-        };
-        return {
-            pagination,
-        };
-    },
+    }
 });
 </script>
 
 <template>
-    <a-list item-layout="vertical" size="default" :style="{fontSize: '18px'}" :pagination="pagination" :data-source="listData">
+    <a-list item-layout="vertical" size="default" :style="{fontSize: '18px'}" :data-source="listData">
         <template #renderItem="{ item }">
             <a-list-item>
-                <MetaVue :date="item.date" :title="item.title" :description="item.description" :href="item.href" />
+                <MetaVue :date="item.date" :title="item.title" :description="item.description" />
             </a-list-item>
         </template>
     </a-list>

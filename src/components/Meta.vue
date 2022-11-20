@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+
 const monthList = [
     "JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC",
@@ -30,10 +31,6 @@ export default defineComponent({
     description: {
       type: String,
       required: true
-    },
-    href: {
-      type: String,
-      required: true
     }
   },
 
@@ -57,7 +54,7 @@ export default defineComponent({
         </div>
     </div>
     <div class="matter">
-        <h4 class="title small"><RouterLink :to="href">{{ title }}</RouterLink></h4>
+        <h3 class="title small">{{ title }}</h3>
         <span class="description">{{ description }}</span>
     </div>
   </div>
@@ -70,6 +67,7 @@ export default defineComponent({
 }
 
 .post-header .meta {
+    margin-top: 10px;
     margin-bottom: 0;
     margin-left: 5px;
 }
@@ -98,8 +96,8 @@ export default defineComponent({
     margin: 0 0 10px 0;
 }
 
-h4 {
-    font-size: 1.2rem;
+h3 {
+    font-size: 1.8rem;
     color: #333;
     font-weight: 500;
     line-height: 1.3em;

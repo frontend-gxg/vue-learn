@@ -14,6 +14,7 @@ export default defineConfig({
   build: {
     outDir: "docs",
     emptyOutDir: true,
+    target: "esnext"
   },
   base: "/vue-learn/",
 })
