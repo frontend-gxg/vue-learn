@@ -7,8 +7,10 @@ const monthList = [
 ];
 
 const getDay = (date: string): string => {
+    const pad = (s: number) => `0${s}`.substr(-2);
     const d = new Date(date);
-    return `${d.getDate()}`;
+    const day = d.getDate();
+    return `${pad(day)}`;
 }
 
 const getRest = (date: string): string => {
@@ -54,7 +56,7 @@ export default defineComponent({
         </div>
     </div>
     <div class="matter">
-        <h3 class="title small">{{ title }}</h3>
+        <h4 class="title small">{{ title }}</h4>
         <span class="description">{{ description }}</span>
     </div>
   </div>
@@ -67,7 +69,6 @@ export default defineComponent({
 }
 
 .post-header .meta {
-    margin-top: 10px;
     margin-bottom: 0;
     margin-left: 5px;
 }
@@ -79,6 +80,7 @@ export default defineComponent({
 }
 
 .post-header .meta .date .day {
+    color: #333;
     font-family: "Playfair Display", serif;
     font-weight: 700;
     line-height: 0.45em;
@@ -88,6 +90,10 @@ export default defineComponent({
 }
 
 .post-header .meta .date .rest {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    color: #333;
+    line-height: 1.8em;
     display: block;
     font-size: 0.75em;
 }
@@ -96,12 +102,27 @@ export default defineComponent({
     margin: 0 0 10px 0;
 }
 
-h3 {
-    font-size: 1.8rem;
+.post-header .matter .description {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    color: #333;
+    line-height: 1.8em;
+    font-size: 17px;
+}
+
+h4 {
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
     color: #333;
     font-weight: 500;
     line-height: 1.3em;
     margin: 30px 0 20px 0;
+    display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
 }
 
 a {

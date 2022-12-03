@@ -58,24 +58,67 @@ export default defineComponent({
               this.type = "table";
               this.resDefault = {
                 columns: ["table"],
-                values: [["timeline"], ["tags"]]
+                values: [
+                  ["timeline"], 
+                  ["tags"]
+                ]
               };
+            } else if (this.sql === "show function status;") {
+              this.type = "table";
+              this.resDefault = {
+                columns: ["name", "type"],
+                values: [
+                  ["renderTimeline", "function"],
+                  ["renderBlog", "function"]
+                ]
+              }
+            } else if (this.sql.startsWith("show create function")) {
+              this.type = "table";
+              const tokens = this.sql.split(" ");
+              const functionName = tokens[tokens.length - 1].replace(";", "");
+              if (functionName === "renderTimeline") {
+                this.resDefault = {
+                  columns: ["function", "table", "create function"],
+                  values: [
+                    ["renderTimeline", "timeline", "List[Tuple[date, title, description]]"]
+                  ]
+                }
+              } else if (functionName === "renderBlog") {
+                this.resDefault = {
+                  columns: ["function", "table", "create function"],
+                  values: [
+                    ["renderBlog", "timeline", "Tuple[title, md]"]
+                  ]
+                }
+              } else {
+                throw new Error(`unknown function ${functionName}`);
+              }
+            } else if (this.sql.includes("renderTimeline")) {
+              const sql = this.sql.replace("renderTimeline", "").replace("(", "").replace(")", "");
+              const result = db.exec(sql)[0] as ResDefault;
+              if (isTimeline(result)) {
+                this.type = "timeline";
+                this.resDefault = result;
+              } else {
+                throw new Error(`invalid argument ${result} for function renderTimeline`);
+              }
+            } else if (this.sql.includes("renderBlog")) {
+              const sql = this.sql.replace("renderBlog", "").replace("(", "").replace(")", "");
+              const result = db.exec(sql)[0] as ResDefault;
+              if (isBlog(result)) {
+                this.type = "blog";
+                this.resBlog = {
+                  title: `${result.values[0][0]}`,
+                  md: `${result.values[0][1]}`
+                };
+              } else {
+                throw new Error(`invalid argument ${result} for function renderBlog`);
+              }
             } else {
               try {
                 const result = db.exec(this.sql)[0] as ResDefault;
-                if (isTimeline(result)) {
-                  this.type = "timeline";
-                  this.resDefault = result;
-                } else if (isBlog(result)) {
-                  this.type = "blog";
-                  this.resBlog = {
-                    title: `${result.values[0][0]}`,
-                    md: `${result.values[0][1]}`
-                  };
-                } else {
-                  this.type = "default";
-                  this.resDefault = result;
-                }
+                this.type = "default";
+                this.resDefault = result;
               } catch (err) {
                 if (err instanceof Error) {
                   console.log(err.message);
