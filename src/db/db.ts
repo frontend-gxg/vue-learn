@@ -5,6 +5,8 @@ import blog1 from '@/asserts/blog/blog1.md?raw'
 import desc1 from '@/asserts/blog/desc1.txt?raw'
 import blog2 from '@/asserts/blog/blog2.md?raw'
 import desc2 from '@/asserts/blog/desc2.txt?raw'
+import blog3 from '@/asserts/blog/blog3.md?raw'
+import desc3 from '@/asserts/blog/desc3.txt?raw'
 
 const blogs = [
     { 
@@ -27,6 +29,13 @@ const blogs = [
         description: desc2,
         md: blog2,
         tags: ["数据库"],
+    },
+    {
+        date: "2022-12-03",
+        title: "云南2022-08-31",
+        description: desc3,
+        md: blog3,
+        tags: ["旅游"],
     }
 ];
 
