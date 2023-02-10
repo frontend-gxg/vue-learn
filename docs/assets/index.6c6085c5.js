@@ -316,7 +316,7 @@ which has a substantially better error term than (5).`,rI="\u6D4B\u8BD5Latex\u65
 \r
 ## \u67B6\u6784\r
 \r
-\`\`\`mermaid\r
+<pre class="mermaid">\r
 flowchart TB\r
     A[client] \r
     D[center]\r
@@ -334,7 +334,7 @@ flowchart TB\r
     A --> D\r
     B --> D\r
     C --> D\r
-\`\`\`\r
+</pre>\r
 \r
 ## \u5C42\u6B21\r
 \r

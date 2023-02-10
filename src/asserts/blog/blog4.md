@@ -13,7 +13,7 @@
 
 ## 架构
 
-```mermaid
+<pre class="mermaid">
 flowchart TB
     A[client] 
     D[center]
@@ -31,7 +31,7 @@ flowchart TB
     A --> D
     B --> D
     C --> D
-```
+</pre>
 
 ## 层次
 
