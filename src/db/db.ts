@@ -9,6 +9,8 @@ import blog3 from '@/asserts/blog/blog3.md?raw'
 import desc3 from '@/asserts/blog/desc3.txt?raw'
 import blog4 from '@/asserts/blog/blog4.md?raw'
 import desc4 from '@/asserts/blog/desc4.txt?raw'
+import blog5 from '@/asserts/blog/blog5.md?raw'
+import desc5 from '@/asserts/blog/desc5.txt?raw'
 
 const blogs = [
     { 
@@ -45,6 +47,13 @@ const blogs = [
         description: desc4,
         md: blog4,
         tags: ["数据库"],
+    },
+    {
+        date: "2023-04-14",
+        title: "dask-sql的开发记录",
+        description: desc5,
+        md: blog5,
+        tags: ["dataframe"],
     }
 ];
 
