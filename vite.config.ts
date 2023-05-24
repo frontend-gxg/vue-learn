@@ -14,7 +14,8 @@ export default defineConfig({
   build: {
     outDir: "docs",
     emptyOutDir: true,
-    target: "esnext"
+    target: "esnext",
+    chunkSizeWarningLimit: 3000
   },
   base: "/vue-learn/",
 })
