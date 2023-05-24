@@ -11,6 +11,10 @@ import blog4 from '@/asserts/blog/blog4.md?raw'
 import desc4 from '@/asserts/blog/desc4.txt?raw'
 import blog5 from '@/asserts/blog/blog5.md?raw'
 import desc5 from '@/asserts/blog/desc5.txt?raw'
+import blog6 from '@/asserts/blog/blog6.md?raw'
+import desc6 from '@/asserts/blog/desc6.txt?raw'
+import blog7 from '@/asserts/blog/blog7.md?raw'
+import desc7 from '@/asserts/blog/desc7.txt?raw'
 
 const blogs = [
     { 
@@ -53,8 +57,22 @@ const blogs = [
         title: "dask-sql的开发记录",
         description: desc5,
         md: blog5,
-        tags: ["dataframe"],
-    }
+        tags: ["数据库", "dataframe"],
+    },
+    {
+        date: "2023-05-24",
+        title: "databend的开发记录",
+        description: desc6,
+        md: blog6,
+        tags: ["数据库"],
+    },
+    {
+        date: "2023-05-24",
+        title: "openraft的开发记录",
+        description: desc7,
+        md: blog7,
+        tags: ["raft"],
+    },
 ];
 
 const config = {
